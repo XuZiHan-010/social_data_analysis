@@ -8,6 +8,8 @@
 
 data_generator.py：用于生成 100 万级通信数据的 Python 脚本，包含中文姓名、GPS、通信内容等字段。
 
+china_province.py: 为了在 Hive SQL 中根据经纬度判断每条消息属于哪个省份，本项目使用以下 Python 脚本读取 china_province.json GeoJSON 文件，并提取各省的经纬度范围（bounding box）：
+
 hive_sql/：Hive 表的创建、清洗、统计 SQL 脚本，适配 FineBI 使用。
 
 README.md：项目说明文档。
