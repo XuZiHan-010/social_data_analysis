@@ -1,1 +1,61 @@
 # social_data_analysis
+
+模拟社交平台通信日志大数据分析系统（Hive + FineBI）
+
+本项目基于 Hive 数据仓库与 FineBI 可视化平台，构建了一个模拟的通信日志分析系统。通过 Python 模拟生成百万级通信数据，使用 HiveSQL 进行数据清洗和统计，最终在 FineBI 上展示用户分布、通信频率、热门用户等可视化报表。
+
+📁 项目结构
+
+data_generator.py：用于生成 100 万级通信数据的 Python 脚本，包含中文姓名、GPS、通信内容等字段。
+
+hive_sql/：Hive 表的创建、清洗、统计 SQL 脚本，适配 FineBI 使用。
+
+README.md：项目说明文档。
+
+screenshots/：FineBI 报表截图。
+
+🏗️ Hadoop 分布式环境支持
+
+本项目构建在 Hadoop 3.3.6 分布式数据处理平台之上：
+
+搭建了包含 node1（主节点）、node2、node3 的伪分布式集群。
+
+所有 Hive 表的数据存储在 HDFS 上，支持大规模数据的高效读写。
+
+Hive 元数据由 Metastore 维护，部署在 node1，并通过 JDBC 供 DataGrip 与 FineBI 远程访问。
+
+MapReduce 引擎支撑了 HiveSQL 的底层查询执行，提高了百万级数据的处理效率。
+
+🔍 数据处理流程
+
+使用 Python Faker 模拟生成 CSV 格式的通信日志数据（包含 null 值、异常经纬度、不同机型等）。
+
+通过 Hive LOAD DATA 导入数据至内部表并创建清洗表结构。
+
+执行 HiveSQL 对数据进行分省划分、统计分析、TOP 用户提取等。
+
+使用 DataGrip 编写并测试 SQL，确保查询性能与正确性。
+
+在 FineBI 中接入 Hive 表，设计地图、雷达图、柱状图等报表实现数据可视化。
+
+📈 可视化亮点（FineBI）
+
+通信用户地域分布图（基于经纬度匹配省份）。
+
+月度热门发送用户 TOP5 雷达图（支持月份切换）。
+
+每月收发用户数量统计图（柱状图）。
+
+📦 环境说明
+
+Hadoop: 3.3.6
+
+Hive: 支持 Beeline 远程连接
+
+Python: 3.10，依赖 Faker、csv
+
+FineBI: 本地部署，连接 Hive Metastore
+
+DataGrip: 编写并验证 HiveSQL 查询
+
+系统环境: Ubuntu 虚拟机（Hive 和 Hadoop 部署）
