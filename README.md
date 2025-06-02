@@ -1,7 +1,7 @@
 # social_data_analysis
 
 
-📊 Simulated Social Platform Communication Log Big Data Analysis System (Hive + FineBI)
+<h2>Simulated Social Platform Communication Log Big Data Analysis System (Hive + FineBI)</h2>
 This project builds a simulated communication log analysis system based on the Hive data warehouse and the FineBI visualization platform. Using Python, we generated millions of communication records. HiveSQL was then applied for data cleaning and aggregation, and FineBI was used to visualize user distribution, communication frequency, top users, and more.
 
 📁 Project Structure
