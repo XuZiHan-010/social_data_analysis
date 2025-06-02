@@ -1,12 +1,65 @@
 # social_data_analysis
 
-模拟社交平台通信日志大数据分析系统（Hive + FineBI） 
-Simulated Social Platform Communication Log Big Data Analysis System (Hive + FineBI)
 
-本项目基于 Hive 数据仓库与 FineBI 可视化平台，构建了一个模拟的通信日志分析系统。通过 Python 模拟生成百万级通信数据，使用 HiveSQL 进行数据清洗和统计，最终在 FineBI 上展示用户分布、通信频率、热门用户等可视化报表。
+📊 Simulated Social Platform Communication Log Big Data Analysis System (Hive + FineBI)
 This project builds a simulated communication log analysis system based on the Hive data warehouse and the FineBI visualization platform. Using Python, we generated millions of communication records. HiveSQL was then applied for data cleaning and aggregation, and FineBI was used to visualize user distribution, communication frequency, top users, and more.
 
+📁 Project Structure
+data_generator.py: A Python script that generates 1 million+ simulated communication records, including Chinese names, GPS coordinates, message content, and more.
 
+china_province.py: To identify which province each message belongs to based on its GPS coordinates, this Python script reads from a china_province.json GeoJSON file and extracts the bounding boxes (latitude and longitude ranges) for each province.
+
+hive_sql/: Contains SQL scripts for creating Hive tables, cleaning the data, and performing statistical analysis. These scripts are optimized for use with FineBI.
+
+README.md: Project documentation.
+
+screenshots/: Contains screenshots of the FineBI dashboards and visual reports.
+
+🏗️ Hadoop Distributed Environment Support
+The project runs on a Hadoop 3.3.6 distributed data processing platform:
+
+A pseudo-distributed cluster is set up with node1 (master node), node2, and node3.
+
+All Hive tables are stored in HDFS, enabling efficient read/write operations for large-scale data.
+
+Hive metadata is managed by Metastore, which is deployed on node1 and accessible remotely via JDBC by DataGrip and FineBI.
+
+MapReduce serves as the execution engine for HiveSQL, improving processing efficiency for million-level datasets.
+
+🔍 Data Processing Workflow
+Data Generation: Use Python Faker to simulate communication logs in CSV format (including null values, abnormal GPS, and various device models).
+
+Data Ingestion: Import the CSV files into Hive internal tables using LOAD DATA, and define cleaning table schemas.
+
+Data Processing: Perform province mapping, statistical analysis, and top user extraction using HiveSQL.
+
+Query Testing: Write and validate SQL queries using DataGrip to ensure correctness and performance.
+
+Visualization: Connect Hive tables to FineBI and design interactive visual reports using maps, radar charts, bar charts, etc.
+
+📈 Visualization Highlights (FineBI)
+Geographic Distribution of Communication Users: Based on GPS matching to provinces.
+
+Monthly Top 5 Senders Radar Chart: Supports month switching for dynamic comparison.
+
+Monthly Statistics of Senders and Receivers: Displayed via bar charts.
+
+📦 Environment Information
+Hadoop: 3.3.6
+
+Hive: Supports remote connections via Beeline
+
+Python: 3.10 (using Faker, csv libraries)
+
+FineBI: Locally deployed, connected to Hive Metastore
+
+DataGrip: Used to write and validate HiveSQL queries
+
+System Environment: Ubuntu virtual machines (for Hive and Hadoop deployment)
+
+模拟社交平台通信日志大数据分析系统（Hive + FineBI） 
+
+本项目基于 Hive 数据仓库与 FineBI 可视化平台，构建了一个模拟的通信日志分析系统。通过 Python 模拟生成百万级通信数据，使用 HiveSQL 进行数据清洗和统计，最终在 FineBI 上展示用户分布、通信频率、热门用户等可视化报表。
 
 📁 项目结构
 
@@ -19,16 +72,6 @@ hive_sql/：Hive 表的创建、清洗、统计 SQL 脚本，适配 FineBI 使�
 README.md：项目说明文档。
 
 screenshots/：FineBI 报表截图。
-Project Structure
-data_generator.py: A Python script that generates 1 million+ simulated communication records, including Chinese names, GPS coordinates, message content, and more.
-
-china_province.py: To identify which province each message belongs to based on its GPS coordinates, this Python script reads from a china_province.json GeoJSON file and extracts the bounding boxes (latitude and longitude ranges) for each province.
-
-hive_sql/: Contains SQL scripts for creating Hive tables, cleaning the data, and performing statistical analysis. These scripts are optimized for use with FineBI.
-
-README.md: Project documentation.
-
-screenshots/: Contains screenshots of the FineBI dashboards and visual reports.
 
 🏗️ Hadoop 分布式环境支持
 
