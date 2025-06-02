@@ -1,8 +1,12 @@
 # social_data_analysis
 
-模拟社交平台通信日志大数据分析系统（Hive + FineBI）
+模拟社交平台通信日志大数据分析系统（Hive + FineBI） 
+Simulated Social Platform Communication Log Big Data Analysis System (Hive + FineBI)
 
 本项目基于 Hive 数据仓库与 FineBI 可视化平台，构建了一个模拟的通信日志分析系统。通过 Python 模拟生成百万级通信数据，使用 HiveSQL 进行数据清洗和统计，最终在 FineBI 上展示用户分布、通信频率、热门用户等可视化报表。
+This project builds a simulated communication log analysis system based on the Hive data warehouse and the FineBI visualization platform. Using Python, we generated millions of communication records. HiveSQL was then applied for data cleaning and aggregation, and FineBI was used to visualize user distribution, communication frequency, top users, and more.
+
+
 
 📁 项目结构
 
@@ -15,6 +19,16 @@ hive_sql/：Hive 表的创建、清洗、统计 SQL 脚本，适配 FineBI 使�
 README.md：项目说明文档。
 
 screenshots/：FineBI 报表截图。
+Project Structure
+data_generator.py: A Python script that generates 1 million+ simulated communication records, including Chinese names, GPS coordinates, message content, and more.
+
+china_province.py: To identify which province each message belongs to based on its GPS coordinates, this Python script reads from a china_province.json GeoJSON file and extracts the bounding boxes (latitude and longitude ranges) for each province.
+
+hive_sql/: Contains SQL scripts for creating Hive tables, cleaning the data, and performing statistical analysis. These scripts are optimized for use with FineBI.
+
+README.md: Project documentation.
+
+screenshots/: Contains screenshots of the FineBI dashboards and visual reports.
 
 🏗️ Hadoop 分布式环境支持
 
